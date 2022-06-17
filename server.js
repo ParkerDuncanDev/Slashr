@@ -15,19 +15,19 @@ const server = http.createServer((req, res) => {
       res.end();
     });
   }
-//   else if (page == '/api') {
-//     let pageNumber = params['pagenumber']
-//     console.log(pageNumber)
-//     async function serveNewMovie(){
-//     const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=585021f63795aea89ca90be073375167&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNumber}&with_genres=27&with_watch_monetization_types=flatrate`)
-//     const data = await res.json()
+    //   else if (page == '/api') {
+    //     let pageNumber = params['pagenumber']
+    //     console.log(pageNumber)
+    //     async function serveNewMovie(){
+    //     const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=585021f63795aea89ca90be073375167&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNumber}&with_genres=27&with_watch_monetization_types=flatrate`)
+    //     const data = await res.json()
 
-//     console.log(data);
-  
-// }
+    //     console.log(data);
+      
+    // }
 
-//   console.log(data);
-//     res.writeHead(200, {'Content-Type': 'application/json'});
+    //   console.log(data);
+    //     res.writeHead(200, {'Content-Type': 'application/json'});
     // if('student' in params){
     //   if(params['student']== 'leon'){
     //     res.writeHead(200, {'Content-Type': 'application/json'});
@@ -46,9 +46,9 @@ const server = http.createServer((req, res) => {
     //       currentOccupation: "unknown"
     //     }
     //     res.end(JSON.stringify(objToJson));
-      }//student != leon
-    }//student if
-  }//else if
+      //}student != leon
+    //}student if
+    //}else if
   else if (page == '/css/style.css'){
     fs.readFile('css/style.css', function(err, data) {
       res.write(data);
@@ -57,16 +57,6 @@ const server = http.createServer((req, res) => {
   }else if (page == '/js/main.js'){
     fs.readFile('js/main.js', function(err, data) {
       res.writeHead(200, {'Content-Type': 'text/javascript'});
-      res.write(data);
-      res.end();
-    });
-  }else{
-    figlet('404!!', function(err, data) {
-      if (err) {
-          console.log('Something went wrong...');
-          console.dir(err);
-          return;
-      }
       res.write(data);
       res.end();
     });
