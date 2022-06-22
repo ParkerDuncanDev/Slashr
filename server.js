@@ -2,7 +2,8 @@ const http = require('http')
 const fs = require('fs')
 const url = require('url');
 const querystring = require('querystring');
-const figlet = require('figlet')
+const fetch = require('node-fetch')
+
 
 const server = http.createServer((req, res) => {
   const page = url.parse(req.url).pathname;
@@ -15,17 +16,26 @@ const server = http.createServer((req, res) => {
       res.end();
     });
   }
-    //   else if (page == '/api') {
-    //     let pageNumber = params['pagenumber']
-    //     console.log(pageNumber)
-    //     async function serveNewMovie(){
-    //     const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=585021f63795aea89ca90be073375167&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNumber}&with_genres=27&with_watch_monetization_types=flatrate`)
-    //     const data = await res.json()
+      else if (page == '/api') {
 
-    //     console.log(data);
+        async function getNewMovie(){
+          let pageNumber = Math.ceil(Math.random() * 500)
+          const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=585021f63795aea89ca90be073375167&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNumber}&with_genres=27&with_watch_monetization_types=flatrate`)
+          data = await res.json()
+          return data.results[1]
+        }
+        
+        function serveMovie(movie){
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.end(JSON.stringify(movie))
+        }
+
+        getNewMovie().then(movie => serveMovie(movie))
       
-    // }
 
+      
+    }
+  
     //   console.log(data);
     //     res.writeHead(200, {'Content-Type': 'application/json'});
     // if('student' in params){
