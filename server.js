@@ -3,6 +3,7 @@ const fs = require('fs')
 const url = require('url');
 const querystring = require('querystring');
 const fetch = require('node-fetch')
+const PORT = 8000
 
 
 const server = http.createServer((req, res) => {
@@ -73,4 +74,4 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(8000);
+server.listen(process.env.PORT || PORT);
